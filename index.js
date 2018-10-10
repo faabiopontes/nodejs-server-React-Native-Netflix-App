@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import Shows from './models/shows'
 
 const app = express();
-const numTvShows = 1000
+const numTvShows = 50
 
 mongoose.connect('mongodb://localhost/shows');
 
@@ -44,7 +44,7 @@ app.get('/all', (req, res, next) => {
          return next()
 })
 
-//get all shows that id is equal to genre 
+//get all shows that id is equal to genre
 app.get('/shows/:id', (req, res, next) => {
     Shows.find({'details.genres': {$in: [req.params.id]}},function(err, shows){
         res.json(shows)
